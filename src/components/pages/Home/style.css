@@ -1,0 +1,13 @@
+.home-page {
+    width: 60vw;
+    margin: 0 auto;
+    background-color: #FFF;
+    min-height: 50vh;
+    box-sizing: border-box;
+    padding: 10px 15px;
+}
+
+.home-page > h2 {
+    margin: 0;
+    padding: 0;
+}

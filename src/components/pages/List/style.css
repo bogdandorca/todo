@@ -1,0 +1,47 @@
+.list-page {
+    width: 60vw;
+    margin: 0 auto;
+    background-color: #FFF;
+    min-height: 50vh;
+    box-sizing: border-box;
+    padding: 10px 15px 100px;
+}
+
+.list-page > h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.actions {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 25px;
+    position: relative;
+}
+
+.actions > input {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    border-radius: 2px;
+    border: 1px solid hsl(10, 0%, 90%);
+}
+
+.actions > button {
+    float: right;
+    border: 1px solid hsla(10, 0%, 30%, 0.3);
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    background-color: hsl(122, 50%, 50%);
+    color: white;
+    font-weight: bold;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: all .2s ease-in;
+}
+
+.actions > button:hover {
+    background-color: hsl(122, 50%, 60%);
+}

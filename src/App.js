@@ -1,25 +1,46 @@
-import logo from './logo.svg';
+import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import './App.css';
+import HomeComponent from "./components/pages/Home";
+import ListComponent from "./components/pages/List";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const myLists = [
+        {
+            id: 1,
+            title: 'Things to do at home',
+            items: ['Laundry', 'Dishes']
+        },
+        {
+            id: 2,
+            title: 'What to pack',
+            items: ['Towel', 'Brush', 'Every freakin\' t-shirt']
+        }
+    ]
+
+    const [lists, setLists] = useState(myLists);
+
+    const addTaskToList = (id, text) => {
+        const updatedList = lists.map(task => {
+            if (task.id === +id) {
+                task.items.push(text)
+            }
+            return task;
+        })
+        setLists(updatedList)
+    }
+
+    return (
+        <div className="App">
+            <header className="app-header">
+                <h1>MyFavList</h1>
+            </header>
+            <Routes>
+                <Route path="/" element={<HomeComponent list={lists}/>} />
+                <Route path="/list/:id" element={<ListComponent list={lists} onAdd={addTaskToList}/>} />
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
