@@ -2,13 +2,19 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './style.css';
 import ListComponent from '../../molecules/List/index';
+import { useSelector, useDispatch } from "react-redux";
+import { addItem } from '../../../features/list';
 
-export default function ListPage({list, onAdd}) {
+export default function ListPage() {
     let { id } = useParams();
+    const dispatch = useDispatch();
+
     const [val, setVal] = useState('');
 
+    const storedLists = useSelector((state) => state.list);
+
     const selectedList = () => {
-        return list.filter(list => list.id === +id)[0];
+        return storedLists.filter(list => list.id === +id)[0];
     }
 
     const addTask = (e) => {
@@ -16,7 +22,7 @@ export default function ListPage({list, onAdd}) {
 
         if (val.length > 1) {
             setVal('');
-            onAdd(id, val);
+            dispatch(addItem({ id, text: val }));
         }
     }
 
@@ -27,7 +33,7 @@ export default function ListPage({list, onAdd}) {
     }
     return (
         <div className="list-page">
-            { !!list && (
+            { !!storedLists && (
                 <>
                     <h2>{selectedList().title}</h2>
                     <ListComponent items={selectedList().items.map(getRenderList)} hasLink={false} />
